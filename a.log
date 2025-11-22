@@ -1,0 +1,58 @@
+make -C /lib/modules/6.8.0-88-generic/build M=/home/ubuntu/projects/etherip modules
+make[1]: Entering directory '/usr/src/linux-headers-6.8.0-88-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  CC [M]  /home/ubuntu/projects/etherip/etherip.o
+/home/ubuntu/projects/etherip/etherip.c:11:1: error: expected ‘;’, identifier or ‘(’ before ‘int’
+   11 | int setup_device() {
+      | ^~~
+/home/ubuntu/projects/etherip/etherip.c:11:5: error: function declaration isn’t a prototype [-Werror=strict-prototypes]
+   11 | int setup_device() {
+      |     ^~~~~~~~~~~~
+/home/ubuntu/projects/etherip/etherip.c: In function ‘setup_device’:
+/home/ubuntu/projects/etherip/etherip.c:15:5: error: ‘dev’ undeclared (first use in this function); did you mean ‘cdev’?
+   15 |     dev = alloc_netdev_mqs(0, "etherip%d", NET_NAME_UNKNOWN, ether_setup, 1, 1);
+      |     ^~~
+      |     cdev
+/home/ubuntu/projects/etherip/etherip.c:15:5: note: each undeclared identifier is reported only once for each function it appears in
+/home/ubuntu/projects/etherip/etherip.c: At top level:
+/home/ubuntu/projects/etherip/etherip.c:29:5: warning: no previous prototype for ‘etherip_init’ [-Wmissing-prototypes]
+   29 | int etherip_init(void) {
+      |     ^~~~~~~~~~~~
+In file included from ./include/asm-generic/bug.h:22,
+                 from ./arch/x86/include/asm/bug.h:99,
+                 from ./include/linux/bug.h:5,
+                 from ./arch/x86/include/asm/paravirt.h:19,
+                 from ./arch/x86/include/asm/cpuid.h:62,
+                 from ./arch/x86/include/asm/processor.h:19,
+                 from ./arch/x86/include/asm/timex.h:5,
+                 from ./include/linux/timex.h:67,
+                 from ./include/linux/time32.h:13,
+                 from ./include/linux/time.h:60,
+                 from ./include/linux/stat.h:19,
+                 from ./include/linux/module.h:13,
+                 from /home/ubuntu/projects/etherip/etherip.c:1:
+/home/ubuntu/projects/etherip/etherip.c: In function ‘etherip_init’:
+./include/linux/printk.h:427:10: error: expected expression before ‘{’ token
+  427 |         ({                                                              \
+      |          ^
+./include/linux/printk.h:457:26: note: in expansion of macro ‘printk_index_wrap’
+  457 | #define printk(fmt, ...) printk_index_wrap(_printk, fmt, ##__VA_ARGS__)
+      |                          ^~~~~~~~~~~~~~~~~
+/home/ubuntu/projects/etherip/etherip.c:31:5: note: in expansion of macro ‘printk’
+   31 |     printk(KERN_ALERT "Hello World!\n");
+      |     ^~~~~~
+/home/ubuntu/projects/etherip/etherip.c:30:5: error: called object is not a function or function pointer
+   30 |     setup_device()
+      |     ^~~~~~~~~~~~
+/home/ubuntu/projects/etherip/etherip.c: In function ‘setup_device’:
+/home/ubuntu/projects/etherip/etherip.c:26:1: error: control reaches end of non-void function [-Werror=return-type]
+   26 | }
+      | ^
+cc1: some warnings being treated as errors
+make[3]: *** [scripts/Makefile.build:243: /home/ubuntu/projects/etherip/etherip.o] Error 1
+make[2]: *** [/usr/src/linux-headers-6.8.0-88-generic/Makefile:1927: /home/ubuntu/projects/etherip] Error 2
+make[1]: *** [Makefile:240: __sub-make] Error 2
+make[1]: Leaving directory '/usr/src/linux-headers-6.8.0-88-generic'
+make: *** [Makefile:7: all] Error 2
